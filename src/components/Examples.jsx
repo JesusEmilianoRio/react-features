@@ -1,4 +1,5 @@
 import TabButton from './TabButton/TabButton.jsx';
+import Tabs from './Tabs/Tabs.jsx';
 import Section from './Section/Section.jsx';
 import { useState } from "react";
 import { EXAMPLES } from "../data.js";
@@ -13,16 +14,16 @@ export default function Examples() {
       
   return (
     <Section title="Examples" id="examples">
-        
-        <menu>
-          <TabButton 
-          isSelected={selectedTopic === 'components'}
-          onClick={getContext}>Components</TabButton>
-          <TabButton isSelected={selectedTopic === 'jsx'} onClick={getContext}>JSX</TabButton>
-          <TabButton isSelected={selectedTopic === 'props'} onClick={getContext}>Props</TabButton>
-          <TabButton isSelected={selectedTopic === 'state'} onClick={getContext}>State</TabButton>
-         
-        </menu> 
+        <Tabs
+          ButtonContainer="menu"
+          button={
+            <>
+              <TabButton isSelected={selectedTopic === 'components'}    onClick={getContext}>Components</TabButton>
+              <TabButton isSelected={selectedTopic === 'jsx'} onClick=    {getContext}>JSX</TabButton>
+              <TabButton isSelected={selectedTopic === 'props'} onClick=    {getContext}>Props</TabButton>
+              <TabButton isSelected={selectedTopic === 'state'} onClick=    {getContext}>State</TabButton>
+            </>
+        }>
         {!selectedTopic ? (<p>Please select a topic.</p>): 
         (<div id="tab-content">
           <h3>{EXAMPLES[selectedTopic].title}</h3>
@@ -33,6 +34,9 @@ export default function Examples() {
             </code>
           </pre>
         </div>)}
+        </Tabs>
+        
+        
     </Section>
   )
 }
